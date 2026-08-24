@@ -1,5 +1,5 @@
 {
-  "originHash" : "6b3d2bef1e94525e78f0e715af420ac48a34f3638423bf5c4c3c824de27f5714",
+  "originHash" : "30d3733325d5e3c4fa8957362d37a89944055050ca41233c07c084d64de42833",
   "pins" : [
     {
       "identity" : "ansi",
@@ -25,7 +25,7 @@
       "location" : "https://github.com/leviouwendijk/Constructors.git",
       "state" : {
         "branch" : "master",
-        "revision" : "c0d4d85bb8515aad8198e6179070d59a93781a30"
+        "revision" : "679eaa95a1df0f072f45bd2ad31a692ef2519ec5"
       }
     },
     {
@@ -34,7 +34,7 @@
       "location" : "https://github.com/leviouwendijk/CSS.git",
       "state" : {
         "branch" : "master",
-        "revision" : "af30a940fe952a2a25d4d706487f762d2d72bd20"
+        "revision" : "5bf0a866fa0a8c8fa2a85efd643bf9a11b7dcfc9"
       }
     },
     {
@@ -97,7 +97,7 @@
       "location" : "https://github.com/leviouwendijk/JS.git",
       "state" : {
         "branch" : "master",
-        "revision" : "09b61d8c0f29a225569d280938f86c2e4f2407bc"
+        "revision" : "e8fb7326813098a03b2c4cb0fe00c07900b46a30"
       }
     },
     {

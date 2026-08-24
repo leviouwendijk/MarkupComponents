@@ -25,18 +25,59 @@ enum MarkupComponentsFlowSuite:
     static let tableFlow = TestFlow(
         "markup.table",
         title:
-            "Generic table contributes HTML and CSS without browser behavior",
+            "Generic table retains semantic HTML and identified CSS without browser behavior",
         tags: [
             "markup",
             "table",
             "html",
             "css",
             "component",
+            "semantic",
             "regression",
         ]
     ) {
         Step(
-            "table satisfies ReusableComponent"
+            "semantic output owns HTML and identified CSS without scripts"
+        ) {
+            let output =
+                fixture()
+                    .output
+
+            try Expect.equal(
+                output.content.body.count,
+                1,
+                "markup.table.output.body-count"
+            )
+
+            try Expect.equal(
+                output.dependencies.styles.contributions.count,
+                1,
+                "markup.table.output.style-contribution-count"
+            )
+
+            try Expect.equal(
+                output.dependencies.styles.contributions[0]
+                    .identifier.rawValue,
+                "markup.table.styles",
+                "markup.table.output.style-identity"
+            )
+
+            try Expect.equal(
+                output.dependencies.scripts.contributions.count,
+                0,
+                "markup.table.output.script-contribution-count"
+            )
+
+            try Expect.equal(
+                output.dependencies.styles.contributions[0]
+                    .content.sheet,
+                Markup.Table.stylesheet(),
+                "markup.table.output.stylesheet-compatibility"
+            )
+        }
+
+        Step(
+            "legacy ReusableComponent view remains derived-compatible"
         ) {
             let table =
                 fixture()
@@ -44,31 +85,26 @@ enum MarkupComponentsFlowSuite:
             try proveReusable(
                 table
             )
-        }
 
-        Step(
-            "table contributes body and stylesheet without scripts"
-        ) {
             let nodes =
-                fixture()
-                    .nodes
+                table.nodes
 
             try Expect.equal(
                 nodes.body.count,
-                1,
-                "markup.table.body-count"
+                table.output.content.body.count,
+                "markup.table.compatibility.body-count"
             )
 
             try Expect.equal(
                 nodes.stylesheets.count,
                 1,
-                "markup.table.stylesheet-count"
+                "markup.table.compatibility.stylesheet-count"
             )
 
             try Expect.equal(
                 nodes.scripts.count,
                 0,
-                "markup.table.script-count"
+                "markup.table.compatibility.script-count"
             )
         }
     }
