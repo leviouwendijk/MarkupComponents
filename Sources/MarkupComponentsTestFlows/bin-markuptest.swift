@@ -39,9 +39,13 @@ enum MarkupComponentsFlowSuite:
         Step(
             "semantic output owns HTML and identified CSS without scripts"
         ) {
-            let output =
+            let table =
                 fixture()
-                    .output
+
+            let output =
+                try proveComponentOutputProviding(
+                    table
+                )
 
             try Expect.equal(
                 output.content.body.count,
@@ -139,6 +143,23 @@ enum MarkupComponentsFlowSuite:
             ]
         )
     }
+}
+
+private func proveComponentOutputProviding<Component>(
+    _ component:
+        Component
+) throws -> ComponentOutput
+where
+    Component:
+        ComponentOutputProviding
+{
+    try Expect.equal(
+        component.output.dependencies.scripts.contributions.count,
+        0,
+        "markup.component-output-providing.no-scripts"
+    )
+
+    return component.output
 }
 
 private func proveReusable<Component>(

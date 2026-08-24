@@ -4,6 +4,7 @@ import HTML
 
 extension Markup {
     public struct Table:
+        ComponentOutputProviding,
         ReusableComponent
     {
         public enum Alignment:
