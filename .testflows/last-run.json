@@ -1,0 +1,41 @@
+{
+  "failed" : 0,
+  "failed_names" : [
+
+  ],
+  "generated_at" : "2026-10-20T10:42:17Z",
+  "passed" : 2,
+  "results" : [
+    {
+      "display_name" : "Generic table retains semantic HTML and identified CSS without browser behavior",
+      "duration_seconds" : 0.0012329816818237305,
+      "name" : "markup.table",
+      "status" : "passed",
+      "tags" : [
+        "component",
+        "css",
+        "html",
+        "markup",
+        "regression",
+        "semantic",
+        "table"
+      ]
+    },
+    {
+      "display_name" : "Generic ordered and unordered semantic lists",
+      "duration_seconds" : 0.0003510713577270508,
+      "name" : "markup.list",
+      "status" : "passed",
+      "tags" : [
+        "component",
+        "html",
+        "list",
+        "markup",
+        "regression"
+      ]
+    }
+  ],
+  "skipped" : 0,
+  "title" : "MarkupComponents flows",
+  "total" : 2
+}

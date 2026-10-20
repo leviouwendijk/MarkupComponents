@@ -1,4 +1,5 @@
 import Constructors
+import HTML
 import MarkupComponents
 import TestFlows
 
@@ -20,6 +21,7 @@ enum MarkupComponentsFlowSuite:
 
     static let flows: [TestFlow] = [
         tableFlow,
+        listFlow,
     ]
 
     static let tableFlow = TestFlow(
@@ -110,6 +112,34 @@ enum MarkupComponentsFlowSuite:
                 0,
                 "markup.table.compatibility.script-count"
             )
+        }
+    }
+
+    static let listFlow = TestFlow(
+        "markup.list",
+        title: "Generic ordered and unordered semantic lists",
+        tags: ["markup", "list", "html", "component", "regression"]
+    ) {
+        Step("unordered list retains semantic HTML without dependencies") {
+            let list = Markup.List(items: ["Alpha", "Beta"])
+            let output = try proveComponentOutputProviding(list)
+            try proveReusable(list)
+
+            let html = output.content.body.snippet()
+            try Expect.equal(html.contains("<ul"), true, "markup.list.unordered")
+            try Expect.equal(html.contains("<li"), true, "markup.list.items")
+            try Expect.equal(html.contains("Alpha"), true, "markup.list.text")
+            try Expect.equal(output.dependencies.styles.contributions.count, 0, "markup.list.no-styles")
+            try Expect.equal(output.dependencies.scripts.contributions.count, 0, "markup.list.no-scripts")
+            try Expect.equal(list.nodes.body.count, output.content.body.count, "markup.list.compatibility")
+        }
+
+        Step("ordered and empty lists retain their container kind") {
+            let ordered = Markup.List(items: ["First", "Second"], kind: .ordered)
+            let empty = Markup.List(items: [])
+
+            try Expect.equal(ordered.output.content.body.snippet().contains("<ol"), true, "markup.list.ordered")
+            try Expect.equal(empty.output.content.body.snippet().contains("<ul"), true, "markup.list.empty")
         }
     }
 

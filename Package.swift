@@ -77,6 +77,10 @@ let package = Package(
                     package: "Constructors"
                 ),
                 .product(
+                    name: "HTML",
+                    package: "HTML"
+                ),
+                .product(
                     name: "TestFlows",
                     package: "TestFlows"
                 ),
