@@ -200,7 +200,7 @@ where
         ReusableComponent
 {
     try Expect.equal(
-        component.nodes.scripts.count,
+        try component.nodes.scripts.count,
         0,
         "markup.reusable-component.no-scripts"
     )
