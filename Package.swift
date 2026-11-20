@@ -14,12 +14,6 @@ let package = Package(
                 "MarkupComponents",
             ]
         ),
-        .executable(
-            name: "markuptest",
-            targets: [
-                "MarkupComponentsTestFlows",
-            ]
-        ),
     ],
     dependencies: [
         .package(
@@ -32,21 +26,6 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/leviouwendijk/Constructors.git",
-            branch: "master"
-        ),
-
-        // .package(
-        //     url: "https://github.com/leviouwendijk/Assets.git",
-        //     branch: "master"
-        // ),
-
-        // .package(
-        //     url: "https://github.com/leviouwendijk/Primitives.git",
-        //     branch: "master"
-        // ),
-
-        .package(
-            url: "https://github.com/leviouwendijk/TestFlows.git",
             branch: "master"
         ),
     ],
@@ -65,24 +44,6 @@ let package = Package(
                 .product(
                     name: "Constructors",
                     package: "Constructors"
-                ),
-            ]
-        ),
-        .executableTarget(
-            name: "MarkupComponentsTestFlows",
-            dependencies: [
-                "MarkupComponents",
-                .product(
-                    name: "Constructors",
-                    package: "Constructors"
-                ),
-                .product(
-                    name: "HTML",
-                    package: "HTML"
-                ),
-                .product(
-                    name: "TestFlows",
-                    package: "TestFlows"
                 ),
             ]
         ),
